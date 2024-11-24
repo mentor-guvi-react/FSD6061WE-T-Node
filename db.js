@@ -1,23 +1,11 @@
 const mongoose = require('mongoose');
-
-
-const dburl = process.env.NODE_ENV_DB_URL || `mongodb+srv://mentorguvi:AsG5HtQYGlXeB4m4@cluster0.njlmlrq.mongodb.net/`;
+const dbUrl = 'mongodb+srv://mentorguvi:AsG5HtQYGlXeB4m4@cluster0.jdnk5.mongodb.net/';
 
 const connectDb = async () => {
-
-    if (mongoose.connection.readyState === 1) {
-        console.log(' MongoDb instance already connected ');
-        return
-    }
-
-    await mongoose.connect(dburl);
-    console.log(mongoose.connection.readyState, ' Connection State');
+  if(!(mongoose.connection.readyState === 1)) {
+     await mongoose.connect(dbUrl);
+  }
+  console.log(mongoose.connection.readyState,'mongoose.connection.readyState');
 }
 
-
-
-module.exports = {
-    connectDb,
-    mongoose
-}
-
+module.exports = {connectDb,mongoose};
